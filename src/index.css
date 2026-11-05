@@ -1,13 +1,139 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #0f0f0f;
+    color: #f5f5f5;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer utilities {
+  .card-n  { border-color: #9ca3af; }
+  .card-r  { border-color: #3b82f6; }
+  .card-sr { border-color: #a855f7; }
+  .card-ssr{ border-color: #f59e0b; }
+
+  .glow-n {
+    box-shadow: 0 0 8px rgba(156, 163, 175, 0.4);
+  }
+  .glow-r {
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+  }
+  .glow-sr {
+    box-shadow: 0 0 16px rgba(168, 85, 247, 0.7);
+  }
+  .glow-ssr {
+    box-shadow: 0 0 24px rgba(245, 158, 11, 0.9), 0 0 48px rgba(245, 158, 11, 0.4);
+  }
+  .glow-legendary {
+    box-shadow: 0 0 32px rgba(238, 57, 187, 1), 0 0 64px rgba(238, 57, 187, 0.6), 0 0 96px rgba(238, 57, 187, 0.3);
+    animation: pulse-legendary 1.2s ease-in-out infinite;
+  }
+  .glow-secret {
+    box-shadow: 0 0 32px rgb(60, 4, 20), 0 0 64px rgb(99, 3, 25), 0 0 96px rgba(196, 19, 84, 0.948);
+    animation: pulse-secret 1.2s ease-in-out infinite;
+  }
+  .glow-free-spin {
+    animation: rainbow-glow 2s linear infinite;
+  }
+
+  /* Border rainbow untuk FREE_SPIN — dirender via inline style di CardItem */
+  .border-rainbow {
+    border-color: transparent;
+    background-clip: padding-box;
+  }
+
+  .shimmer-ssr {
+    background: linear-gradient(
+      105deg,
+      transparent 40%,
+      rgba(255, 215, 0, 0.3) 50%,
+      transparent 60%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  .shimmer-legendary {
+    background: linear-gradient(
+      105deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.5) 50%,
+      transparent 70%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.2s infinite;
+  }
+
+  .shimmer-rainbow {
+    background: linear-gradient(
+      105deg,
+      transparent 30%,
+      rgba(255,255,255,0.4) 50%,
+      transparent 70%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1s infinite;
+  }
+
+  .shimmer-secret {
+    background: linear-gradient(
+      105deg,
+      transparent 40%,
+      rgba(205, 125, 168, 0.4) 50%,
+      transparent 60%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+
+  .animate-flip {
+    animation: flip-card 0.6s ease-in-out;
+  }
+
+  .animate-reveal {
+    animation: card-reveal 0.5s ease-out forwards;
+  }
+
+  .animate-pulse-gold {
+    animation: pulse-gold 1.5s ease-in-out infinite;
+  }
+
+  .animate-rainbow-border {
+    animation: rainbow-border 2s linear infinite;
+  }
+}
+
+@keyframes rainbow-glow {
+  0%   { box-shadow: 0 0 24px 4px #ff0000aa, 0 0 48px 8px #ff000044; }
+  16%  { box-shadow: 0 0 24px 4px #ff7700aa, 0 0 48px 8px #ff770044; }
+  33%  { box-shadow: 0 0 24px 4px #ffff00aa, 0 0 48px 8px #ffff0044; }
+  50%  { box-shadow: 0 0 24px 4px #00ff00aa, 0 0 48px 8px #00ff0044; }
+  66%  { box-shadow: 0 0 24px 4px #0077ffaa, 0 0 48px 8px #0077ff44; }
+  83%  { box-shadow: 0 0 24px 4px #8b00ffaa, 0 0 48px 8px #8b00ff44; }
+  100% { box-shadow: 0 0 24px 4px #ff0000aa, 0 0 48px 8px #ff000044; }
+}
+
+@keyframes rainbow-border {
+  0%   { border-color: #ff0000; }
+  16%  { border-color: #ff7700; }
+  33%  { border-color: #ffff00; }
+  50%  { border-color: #00ff00; }
+  66%  { border-color: #0077ff; }
+  83%  { border-color: #8b00ff; }
+  100% { border-color: #ff0000; }
+}
+
+@keyframes pulse-legendary {
+  0%, 100% { box-shadow: 0 0 32px rgba(238,57,187,1), 0 0 64px rgba(238,57,187,0.6); }
+  50%       { box-shadow: 0 0 48px rgba(255,120,220,1), 0 0 96px rgba(238,57,187,0.9); }
+}
+
+@keyframes pulse-secret {
+  0%, 100% { box-shadow: 0 0 32px rgba(127,7,41,1), 0 0 64px rgba(73, 3, 46, 0.874); }
+  50%       { box-shadow: 0 0 48px rgba(255,120,220,1), 0 0 96px rgba(238,57,187,0.9); }
 }
